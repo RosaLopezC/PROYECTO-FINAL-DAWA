@@ -1,0 +1,18 @@
+# Backend
+backend-farmacia/node_modules/
+backend-farmacia/.env
+
+# Frontend  
+frontend-farmacia/node_modules/
+frontend-farmacia/.next/
+frontend-farmacia/.env.local
+frontend-farmacia/.env.development.local
+frontend-farmacia/.env.test.local
+frontend-farmacia/.env.production.local
+
+# Logs
+*.log
+
+# Sistema
+.DS_Store
+Thumbs.db
