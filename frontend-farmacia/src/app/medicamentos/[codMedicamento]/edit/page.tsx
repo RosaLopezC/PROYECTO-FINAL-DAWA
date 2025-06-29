@@ -6,6 +6,7 @@ import { Pill, Save, ArrowLeft, Calendar, Package, DollarSign, Building2, FileTe
 import { getMedicamento, updateMedicamento, getLaboratorios } from '@/lib/api';
 
 export default function EditarMedicamento() {
+  // [Toda la lógica se mantiene exactamente igual]
   const router = useRouter();
   const { codMedicamento } = useParams();
   const [laboratorios, setLaboratorios] = useState([]);
@@ -35,7 +36,6 @@ export default function EditarMedicamento() {
       
       setLaboratorios(laboratoriosData);
       
-      // Formatear fechas para el input date
       const fechaFab = new Date(medicamentoData.fechaFabricacion).toISOString().split('T')[0];
       const fechaVenc = new Date(medicamentoData.fechaVencimiento).toISOString().split('T')[0];
       
@@ -60,7 +60,6 @@ export default function EditarMedicamento() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    // Validaciones
     if (!form.descripcionMed || !form.fechaFabricacion || !form.fechaVencimiento || 
         !form.presentacion || !form.stock || !form.precioVentaUni || 
         !form.precioVentaPres || !form.codLab) {
@@ -68,7 +67,6 @@ export default function EditarMedicamento() {
       return;
     }
 
-    // Validar fechas
     const fechaFab = new Date(form.fechaFabricacion);
     const fechaVenc = new Date(form.fechaVencimiento);
     if (fechaVenc <= fechaFab) {
@@ -123,19 +121,19 @@ export default function EditarMedicamento() {
           <div className="flex items-center space-x-4">
             <button
               onClick={() => router.push('/medicamentos')}
-              className="p-2 rounded-xl bg-gray-100 hover:bg-gray-200 transition-colors"
+              className="p-2 rounded-xl bg-rose-100 hover:bg-rose-200 transition-colors"
             >
-              <ArrowLeft className="h-5 w-5 text-gray-600" />
+              <ArrowLeft className="h-5 w-5 text-rose-600" />
             </button>
             <div className="flex items-center space-x-3">
-              <div className="p-3 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl shadow-lg">
+              <div className="p-3 bg-gradient-to-r from-pink-500 to-rose-500 rounded-xl shadow-lg">
                 <Pill className="h-8 w-8 text-white" />
               </div>
               <div>
-                <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent">
+                <h1 className="text-3xl font-bold bg-gradient-to-r from-pink-600 to-rose-600 bg-clip-text text-transparent">
                   Editar Medicamento
                 </h1>
-                <p className="text-gray-600 text-sm">Actualiza la información del medicamento</p>
+                <p className="text-rose-600 text-sm">Actualiza la información del medicamento</p>
               </div>
             </div>
           </div>
@@ -145,22 +143,22 @@ export default function EditarMedicamento() {
       {/* Form */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <form onSubmit={handleSubmit} className="bg-white/70 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20 overflow-hidden">
-          <div className="bg-gradient-to-r from-blue-500 to-blue-600 px-8 py-6">
+          <div className="bg-gradient-to-r from-pink-500 to-rose-500 px-8 py-6">
             <h2 className="text-2xl font-bold text-white">Actualizar Información</h2>
-            <p className="text-blue-100 mt-1">Modifica los datos del medicamento</p>
+            <p className="text-pink-100 mt-1">Modifica los datos del medicamento</p>
           </div>
 
           <div className="p-8 space-y-8">
             {/* Información Básica */}
             <div className="space-y-6">
-              <h3 className="text-lg font-semibold text-gray-900 border-b border-gray-200 pb-2">
+              <h3 className="text-lg font-semibold text-rose-900 border-b border-pink-200 pb-2">
                 Información Básica
               </h3>
               
               {/* Descripción */}
               <div className="space-y-2">
-                <label className="flex items-center space-x-2 text-gray-700 font-semibold">
-                  <FileText className="h-5 w-5 text-blue-600" />
+                <label className="flex items-center space-x-2 text-rose-700 font-semibold">
+                  <FileText className="h-5 w-5 text-pink-600" />
                   <span>Descripción del Medicamento *</span>
                 </label>
                 <input
@@ -169,15 +167,15 @@ export default function EditarMedicamento() {
                   value={form.descripcionMed}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white/80"
+                  className="w-full px-4 py-3 border border-pink-300 rounded-xl focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all duration-200 bg-white/80 text-rose-900"
                   placeholder="Ej: Paracetamol 500mg"
                 />
               </div>
 
               {/* Laboratorio */}
               <div className="space-y-2">
-                <label className="flex items-center space-x-2 text-gray-700 font-semibold">
-                  <Building2 className="h-5 w-5 text-blue-600" />
+                <label className="flex items-center space-x-2 text-rose-700 font-semibold">
+                  <Building2 className="h-5 w-5 text-pink-600" />
                   <span>Laboratorio *</span>
                 </label>
                 <select
@@ -185,7 +183,7 @@ export default function EditarMedicamento() {
                   value={form.codLab}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white/80"
+                  className="w-full px-4 py-3 border border-pink-300 rounded-xl focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all duration-200 bg-white/80 text-rose-900"
                 >
                   <option value="">Selecciona un laboratorio</option>
                   {laboratorios.map((lab) => (
@@ -198,8 +196,8 @@ export default function EditarMedicamento() {
 
               {/* Presentación */}
               <div className="space-y-2">
-                <label className="flex items-center space-x-2 text-gray-700 font-semibold">
-                  <Package className="h-5 w-5 text-blue-600" />
+                <label className="flex items-center space-x-2 text-rose-700 font-semibold">
+                  <Package className="h-5 w-5 text-pink-600" />
                   <span>Presentación *</span>
                 </label>
                 <select
@@ -207,7 +205,7 @@ export default function EditarMedicamento() {
                   value={form.presentacion}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white/80"
+                  className="w-full px-4 py-3 border border-pink-300 rounded-xl focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all duration-200 bg-white/80 text-rose-900"
                 >
                   <option value="">Selecciona una presentación</option>
                   <option value="Tabletas">Tabletas</option>
@@ -225,15 +223,15 @@ export default function EditarMedicamento() {
 
             {/* Fechas */}
             <div className="space-y-6">
-              <h3 className="text-lg font-semibold text-gray-900 border-b border-gray-200 pb-2">
+              <h3 className="text-lg font-semibold text-rose-900 border-b border-pink-200 pb-2">
                 Fechas
               </h3>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Fecha de Fabricación */}
                 <div className="space-y-2">
-                  <label className="flex items-center space-x-2 text-gray-700 font-semibold">
-                    <Calendar className="h-5 w-5 text-blue-600" />
+                  <label className="flex items-center space-x-2 text-rose-700 font-semibold">
+                    <Calendar className="h-5 w-5 text-pink-600" />
                     <span>Fecha de Fabricación *</span>
                   </label>
                   <input
@@ -242,14 +240,14 @@ export default function EditarMedicamento() {
                     value={form.fechaFabricacion}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white/80"
+                    className="w-full px-4 py-3 border border-pink-300 rounded-xl focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all duration-200 bg-white/80 text-rose-900"
                   />
                 </div>
 
                 {/* Fecha de Vencimiento */}
                 <div className="space-y-2">
-                  <label className="flex items-center space-x-2 text-gray-700 font-semibold">
-                    <Calendar className="h-5 w-5 text-orange-600" />
+                  <label className="flex items-center space-x-2 text-rose-700 font-semibold">
+                    <Calendar className="h-5 w-5 text-rose-600" />
                     <span>Fecha de Vencimiento *</span>
                   </label>
                   <input
@@ -258,7 +256,7 @@ export default function EditarMedicamento() {
                     value={form.fechaVencimiento}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white/80"
+                    className="w-full px-4 py-3 border border-pink-300 rounded-xl focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all duration-200 bg-white/80 text-rose-900"
                   />
                 </div>
               </div>
@@ -266,15 +264,15 @@ export default function EditarMedicamento() {
 
             {/* Inventario y Precios */}
             <div className="space-y-6">
-              <h3 className="text-lg font-semibold text-gray-900 border-b border-gray-200 pb-2">
+              <h3 className="text-lg font-semibold text-rose-900 border-b border-pink-200 pb-2">
                 Inventario y Precios
               </h3>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {/* Stock */}
                 <div className="space-y-2">
-                  <label className="flex items-center space-x-2 text-gray-700 font-semibold">
-                    <Package className="h-5 w-5 text-blue-600" />
+                  <label className="flex items-center space-x-2 text-rose-700 font-semibold">
+                    <Package className="h-5 w-5 text-pink-600" />
                     <span>Stock Actual *</span>
                   </label>
                   <input
@@ -284,15 +282,15 @@ export default function EditarMedicamento() {
                     onChange={handleChange}
                     required
                     min="0"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white/80"
+                    className="w-full px-4 py-3 border border-pink-300 rounded-xl focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all duration-200 bg-white/80 text-rose-900"
                     placeholder="100"
                   />
                 </div>
 
                 {/* Precio Unitario */}
                 <div className="space-y-2">
-                  <label className="flex items-center space-x-2 text-gray-700 font-semibold">
-                    <DollarSign className="h-5 w-5 text-blue-600" />
+                  <label className="flex items-center space-x-2 text-rose-700 font-semibold">
+                    <DollarSign className="h-5 w-5 text-pink-600" />
                     <span>Precio Unitario (S/) *</span>
                   </label>
                   <input
@@ -303,15 +301,15 @@ export default function EditarMedicamento() {
                     required
                     min="0"
                     step="0.01"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white/80"
+                    className="w-full px-4 py-3 border border-pink-300 rounded-xl focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all duration-200 bg-white/80 text-rose-900"
                     placeholder="2.50"
                   />
                 </div>
 
                 {/* Precio Presentación */}
                 <div className="space-y-2">
-                  <label className="flex items-center space-x-2 text-gray-700 font-semibold">
-                    <DollarSign className="h-5 w-5 text-green-600" />
+                  <label className="flex items-center space-x-2 text-rose-700 font-semibold">
+                    <DollarSign className="h-5 w-5 text-rose-600" />
                     <span>Precio Presentación (S/) *</span>
                   </label>
                   <input
@@ -322,7 +320,7 @@ export default function EditarMedicamento() {
                     required
                     min="0"
                     step="0.01"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white/80"
+                    className="w-full px-4 py-3 border border-pink-300 rounded-xl focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all duration-200 bg-white/80 text-rose-900"
                     placeholder="25.00"
                   />
                 </div>
@@ -330,8 +328,8 @@ export default function EditarMedicamento() {
             </div>
 
             {/* Nota informativa */}
-            <div className="bg-blue-50 border border-blue-200 rounded-xl p-4">
-              <p className="text-blue-800 text-sm">
+            <div className="bg-pink-50 border border-pink-200 rounded-xl p-4">
+              <p className="text-pink-800 text-sm">
                 <strong>Nota:</strong> Verifica que todos los datos sean correctos antes de guardar. 
                 Los cambios en precios y stock afectarán inmediatamente el sistema de inventario.
               </p>
@@ -339,18 +337,18 @@ export default function EditarMedicamento() {
           </div>
 
           {/* Footer */}
-          <div className="bg-gray-50/80 px-8 py-6 border-t border-gray-200 flex items-center justify-between">
+          <div className="bg-rose-50/80 px-8 py-6 border-t border-pink-200 flex items-center justify-between">
             <button
               type="button"
               onClick={() => router.push('/medicamentos')}
-              className="px-6 py-3 border border-gray-300 text-gray-700 rounded-xl hover:bg-gray-100 transition-colors"
+              className="px-6 py-3 border border-pink-300 text-rose-700 rounded-xl hover:bg-pink-100 transition-colors"
             >
               Cancelar
             </button>
             <button
               type="submit"
               disabled={loading}
-              className="flex items-center space-x-2 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-8 py-3 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+              className="flex items-center space-x-2 bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white px-8 py-3 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
             >
               {loading ? (
                 <>
